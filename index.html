@@ -7,20 +7,72 @@
     <title>Il mio Pokédex</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>Il mio Pokedex Web</h1>
 
     <!-- Barra di ricerca-->
-     <input type="text" id="searchInput" placeholder="Cerca un Pokémon...">
-     <button id="searchBtn">Cerca</button>
+    <input type="text" id="searchInput" placeholder="Cerca un Pokémon...">
+    <button id="searchBtn">Cerca</button>
+    <button id="generateRandomBtn">Random Pokémon!</button>
 
-     <!-- Scheda risultato -->
-      <div id="card" class="pokemon-card hidden">
+    <!-- Scheda risultato -->
+    <div id="card" class="pokemon-card hidden">
         <img id="sprite" src="" alt="Sprite">
         <h2 id="pokeName"></h2>
         <p id="pokeType"></p>
-      </div>
+    </div>
+    <div id="risultatiTipo" class="risultati-tipo"></div>
+
+    <div id="statsSection" class="hidden">
+        <div class="section-title">Statistiche Base</div>
+        <div class="stats-list">
+            <div class="stat-row">
+                <div class="stat-name">HP</div>
+                <div class="stat-bar-wrap">
+                    <div class="stat-bar-fill" style="width:calc(48/255*100%)"></div>
+                </div>
+                <div class="stat-num">48</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Attacco</div>
+                <div class="stat-bar-wrap">
+                    <div class="stat-bar-fill" style="width:calc(48/255*100%)"></div>
+                </div>
+                <div class="stat-num">48</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Difesa</div>
+                <div class="stat-bar-wrap">
+                    <div class="stat-bar-fill" style="width:calc(48/255*100%)"></div>
+                </div>
+                <div class="stat-num">48</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Att. Speciale</div>
+                <div class="stat-bar-wrap">
+                    <div class="stat-bar-fill" style="width:calc(48/255*100%)"></div>
+                </div>
+                <div class="stat-num">48</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Dif. Speciale</div>
+                <div class="stat-bar-wrap">
+                    <div class="stat-bar-fill" style="width:calc(48/255*100%)"></div>
+                </div>
+                <div class="stat-num">48</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Velocità</div>
+                <div class="stat-bar-wrap">
+                    <div class="stat-bar-fill" style="width:calc(48/255*100%)"></div>
+                </div>
+                <div class="stat-num">48</div>
+            </div>
+        </div>
+    </div>
 
     <script src="main.js"></script>
 </body>
+
 </html>
