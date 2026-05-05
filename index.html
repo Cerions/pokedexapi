@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il mio Pokédex</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Il mio Pokedex Web</h1>
+
+    <!-- Barra di ricerca-->
+     <input type="text" id="searchInput" placeholder="Cerca un Pokémon...">
+     <button id="searchBtn">Cerca</button>
+
+     <!-- Scheda risultato -->
+      <div id="card" class="pokemon-card hidden">
+        <img id="sprite" src="" alt="Sprite">
+        <h2 id="pokeName"></h2>
+        <p id="pokeType"></p>
+      </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
