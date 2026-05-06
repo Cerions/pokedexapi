@@ -26,6 +26,13 @@ document.getElementById('searchBtn').addEventListener('click', () => {
     if (nome) cercaPokemon(nome);
 });
 
+document.getElementById('searchInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        const nome = document.getElementById('searchInput').value.toLowerCase().trim();
+        if (nome) cercaPokemon(nome);
+    }
+});
+
 document.getElementById('generateRandomBtn').addEventListener('click', () => {
     let randomInt = randomIntFromInterval(1, 1025);
     generatePokemon(randomInt);
