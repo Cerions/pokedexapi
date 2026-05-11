@@ -24,6 +24,8 @@ const coloriTipo = {
 // === PREFERITI ===
 const FAV_KEY = 'pokemonPreferiti';
 
+let tutti = [];
+
 // Per esercizi forEach, map, filter
 const pokemon = [
     { nome: 'Pikachu', tipo: 'elettro', hp: 35 },
@@ -64,6 +66,51 @@ document.getElementById('searchInputByType').addEventListener('keydown', (e) => 
 
 document.getElementById('loadFirstPokemon').addEventListener('click', () => {
     loadFirstPokemon();
+});
+
+async function caricaDati() {
+    const risposta = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");
+    const dati = await risposta.json();
+
+    const promesse = dati.results.map(p => fetch(p.url));
+
+    const risposte = await Promise.all(promesse);
+
+    // conversione risposte in json
+    const dettagli = await Promise.all(risposte.map(r => r.json()));
+
+    tutti = dettagli;
+    mostraGriglia(tutti); 
+    console.log("Caricati:", tutti);
+}
+
+function mostraGriglia(lista) {
+    const griglia = document.getElementById("griglia");
+    griglia.innerHTML = "";
+
+    lista.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+      <img src="${p.sprites.front_default}" alt="${p.name}">
+      <p>${p.name}</p>
+    `;
+        griglia.appendChild(card);
+
+        card.addEventListener('click', () => cercaPokemon(p.name));
+    });
+}
+
+function cercaLive(testo) {
+  const query = testo.toLowerCase();
+  const filtrati = tutti.filter(p => p.name.includes(query));
+
+  mostraGriglia(filtrati);
+}
+
+// Colleghiamo la funzione all'evento "input" della barra di ricerca
+document.getElementById("searchInput").addEventListener("input", function() {
+  cercaLive(this.value);
 });
 
 async function cercaPokemon(nome) {
@@ -283,6 +330,8 @@ function ordinaPokemonPerHp(lista) {
     return lista.sort((a, b) => b.hp - a.hp);
 }
 
+
+caricaDati();
 // mostra i preferiti al caricamento della pagina
 mostraPreferiti();
 

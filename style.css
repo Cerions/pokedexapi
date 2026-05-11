@@ -14,7 +14,8 @@ body {
     margin: 0 auto;
 }
 
-input, button {
+input,
+button {
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
     border: 2px solid #cc2936;
@@ -25,6 +26,34 @@ button {
     background: #cc2936;
     color: white;
     cursor: pointer;
+}
+
+#griglia {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 10px;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.card {
+  background: #16213e;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  flex: 0 0 150px;
+}
+
+.card img {
+  width: 96px;
+  height: 96px;
+}
+
+.card:hover {
+    transform: scale(1.05);
 }
 
 .searchSection {
@@ -49,7 +78,7 @@ button {
     padding: 2rem;
     max-width: 400px;
     margin: 2rem auto;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 .hidden {
@@ -94,7 +123,7 @@ img {
 }
 
 .tipo-btn {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     border: none;
     border-radius: 12px;
     padding: 4px 12px;
@@ -105,7 +134,7 @@ img {
 }
 
 .tipo-btn:hover {
-    background: rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .tipo-titolo {
@@ -156,7 +185,7 @@ img {
 
 .mini-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .mini-card img {
@@ -165,7 +194,8 @@ img {
 
 /* Bottone preferito (stellina) */
 .pokemon-card {
-    position: relative;  /* serve perché la stellina sia posizionata rispetto alla card */
+    position: relative;
+    /* serve perché la stellina sia posizionata rispetto alla card */
 }
 
 .fav-btn {
