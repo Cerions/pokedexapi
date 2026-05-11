@@ -27,6 +27,22 @@ button {
     cursor: pointer;
 }
 
+.searchSection {
+    display: grid;
+    justify-items: center;
+    gap: 0.5rem;
+}
+
+.searchSection input {
+    width: 100%;
+    max-width: 400px;
+}
+
+.innerSearchSection {
+    display: flex;
+    gap: 0.5rem;
+}
+
 .pokemon-card {
     background: #16213e;
     border-radius: 16px;
@@ -98,12 +114,34 @@ img {
     font-weight: normal;
 }
 
+.tipo-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.lista-nomi {
+    text-align: left;
+    min-width: 150px;
+    list-style: disc inside;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-nomi li {
+    padding: 4px 0;
+    text-transform: capitalize;
+}
+
 .risultati-tipo {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
+    flex: 1;
 }
 
 .mini-card {
@@ -113,6 +151,7 @@ img {
     width: 100px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    background-color: rgb(128, 128, 128);
 }
 
 .mini-card:hover {
