@@ -68,8 +68,9 @@ document.getElementById('loadFirstPokemon').addEventListener('click', () => {
     loadFirstPokemon();
 });
 
-async function caricaDati() {
-    const risposta = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");
+// TODO settare limite da HTML
+async function caricaDati(limit = 20) {
+    const risposta = await fetch("https://pokeapi.co/api/v2/pokemon?limit=" + limit);
     const dati = await risposta.json();
 
     const promesse = dati.results.map(p => fetch(p.url));
@@ -81,7 +82,6 @@ async function caricaDati() {
 
     tutti = dettagli;
     mostraGriglia(tutti); 
-    console.log("Caricati:", tutti);
 }
 
 function mostraGriglia(lista) {
