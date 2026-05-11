@@ -123,3 +123,53 @@ img {
 .mini-card img {
     width: 80px;
 }
+
+/* Bottone preferito (stellina) */
+.pokemon-card {
+    position: relative;  /* serve perché la stellina sia posizionata rispetto alla card */
+}
+
+.fav-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ffd700;
+}
+
+/* Sezione preferiti */
+#preferitiSection {
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+#preferitiLista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fav-card {
+    width: 100px;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.fav-card:hover {
+    transform: scale(1.05);
+}
+
+.fav-card img {
+    width: 100%;
+}
+
+.fav-card p {
+    font-size: 0.8rem;
+    margin: 0;
+}

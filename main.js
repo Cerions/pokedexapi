@@ -21,6 +21,9 @@ const coloriTipo = {
     steel: '#B0BEC5',
 };
 
+// === PREFERITI ===
+const FAV_KEY = 'pokemonPreferiti';
+
 document.getElementById('searchBtn').addEventListener('click', () => {
     const nome = document.getElementById('searchInput').value.toLowerCase().trim();
     if (nome) cercaPokemon(nome);
@@ -108,6 +111,9 @@ function mostraCard(dati) {
 
     aggiornaStat(dati);
     document.getElementById('card').classList.remove('hidden');
+
+    document.getElementById('favBtn').onclick = () => togglePreferito(dati);
+    aggiornaStellaFav(dati.id);
 }
 
 function randomIntFromInterval(min, max) {
@@ -127,3 +133,66 @@ function aggiornaStat(dati) {
         numero.textContent = valore;
     });
 }
+
+// carica i preferiti da localStorage all'avvio
+function caricaPreferiti() {
+    const data = localStorage.getItem(FAV_KEY);
+    return data ? JSON.parse(data) : [];
+}
+
+// salva i preferiti in localStorage
+function salvaPreferiti(lista) {
+    localStorage.setItem(FAV_KEY, JSON.stringify(lista));
+}
+
+// aggiunge o rimuove dai preferiti
+function togglePreferito(pokemon) {
+    let preferiti = caricaPreferiti();
+    const index = preferiti.findIndex(p => p.id === pokemon.id);
+
+    if (index === -1) {
+        // non c'è → aggiungi
+        preferiti.push({
+            id: pokemon.id,
+            name: pokemon.name,
+            sprite: pokemon.sprites.front_default,
+            tipo: pokemon.types[0].type.name
+        });
+    } else {
+        // c'è già → rimuovi
+        preferiti.splice(index, 1);
+    }
+
+    salvaPreferiti(preferiti);
+    mostraPreferiti();
+    aggiornaStellaFav(pokemon.id);
+}
+
+// disegna la lista dei preferiti
+function mostraPreferiti() {
+    const preferiti = caricaPreferiti();
+    const container = document.getElementById('preferitiLista');
+
+    if (preferiti.length === 0) {
+        container.innerHTML = '<p>Nessun preferito ancora.</p>';
+        return;
+    }
+
+    container.innerHTML = preferiti.map(p => `
+        <div class="fav-card" style="background-color: ${coloriTipo[p.tipo] || '#ccc'}"
+             onclick="cercaPokemon('${p.name}')">
+            <img src="${p.sprite}" alt="${p.name}">
+            <p>${p.name.toUpperCase()}</p>
+        </div>
+    `).join('');
+}
+
+// aggiorna la stellina (piena/vuota) in base allo stato
+function aggiornaStellaFav(pokemonId) {
+    const preferiti = caricaPreferiti();
+    const isFav = preferiti.some(p => p.id === pokemonId);
+    document.getElementById('favBtn').textContent = isFav ? '★' : '☆';
+}
+
+// mostra i preferiti al caricamento della pagina
+mostraPreferiti();
