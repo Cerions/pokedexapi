@@ -151,7 +151,7 @@ function togglePreferito(pokemon) {
     const index = preferiti.findIndex(p => p.id === pokemon.id);
 
     if (index === -1) {
-        // non c'è → aggiungi
+        // aggiungi
         preferiti.push({
             id: pokemon.id,
             name: pokemon.name,
@@ -159,7 +159,7 @@ function togglePreferito(pokemon) {
             tipo: pokemon.types[0].type.name
         });
     } else {
-        // c'è già → rimuovi
+        // rimuovi
         preferiti.splice(index, 1);
     }
 
@@ -187,7 +187,7 @@ function mostraPreferiti() {
     `).join('');
 }
 
-// aggiorna la stellina (piena/vuota) in base allo stato
+// aggiorna la stellina in base allo stato
 function aggiornaStellaFav(pokemonId) {
     const preferiti = caricaPreferiti();
     const isFav = preferiti.some(p => p.id === pokemonId);
