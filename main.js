@@ -40,7 +40,7 @@ document.getElementById('generateRandomBtn').addEventListener('click', () => {
 
 async function cercaPokemon(nome) {
     try {
-        const res  = await fetch(URL + 'pokemon/' + nome);
+        const res = await fetch(URL + 'pokemon/' + nome);
         const dati = await res.json();
         mostraCard(dati);
     } catch (err) {
@@ -50,7 +50,7 @@ async function cercaPokemon(nome) {
 
 async function generatePokemon(randomInt) {
     try {
-        const res  = await fetch(URL + 'pokemon/' + randomInt);
+        const res = await fetch(URL + 'pokemon/' + randomInt);
         const dati = await res.json();
         mostraCard(dati);
     } catch (err) {
@@ -61,27 +61,29 @@ async function generatePokemon(randomInt) {
 async function cercaPerTipo(tipo) {
     try {
         document.getElementById('statsSection').classList.add('hidden');
-        const res  = await fetch(URL + 'type/' + tipo);
+        const res = await fetch(URL + 'type/' + tipo);
         const dati = await res.json();
 
         const lista = dati.pokemon.slice(0, 10);
 
         // svuota la card attuale e mostra un messaggio
         document.getElementById('card').classList.add('hidden');
-        document.getElementById('risultatiTipo').innerHTML = `<p>Pokémon di tipo <strong>${tipo}</strong>:</p>`;
+        document.getElementById('tipoTitolo').innerHTML = `Pokémon di tipo <strong>${tipo}</strong>:`;
+        document.getElementById('risultatiTipo').innerHTML = '';
 
         for (const p of lista) {
-            const res2  = await fetch(p.pokemon.url);
+            const res2 = await fetch(p.pokemon.url);
             const pokemon = await res2.json();
 
             const miniCard = document.createElement('div');
             miniCard.className = 'mini-card';
             miniCard.style.backgroundColor = coloriTipo[tipo] || '#ccc';
             miniCard.innerHTML = `
-                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-                <p>${pokemon.name.toUpperCase()}</p>
-            `;
-            document.getElementById('risultatiTipo').appendChild(miniCard);
+    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+    <p>${pokemon.name.toUpperCase()}</p>
+`;
+            miniCard.addEventListener('click', () => cercaPokemon(pokemon.name));
+            document.getElementById('risultatiTipo').appendChild(miniCard)
         }
     } catch (err) {
         alert('Errore nel caricamento del tipo!');
@@ -91,6 +93,7 @@ async function cercaPerTipo(tipo) {
 function mostraCard(dati) {
     document.getElementById('statsSection').classList.remove('hidden');
     document.getElementById('risultatiTipo').innerHTML = '';
+    document.getElementById('tipoTitolo').innerHTML = '';
 
     document.getElementById('pokeName').textContent = dati.name.toUpperCase();
     document.getElementById('sprite').src = dati.sprites.front_default;
